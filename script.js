@@ -4,6 +4,7 @@ const tipPerPerson = document.getElementById("tip-amount");
 const totalPerPerson = document.getElementById("total-amount");
 const tipCustom = document.querySelector(".tip-custom");
 const tips = document.querySelectorAll(".tips");
+const resetBtn = document.getElementById("resetBtn");
 
 
 billInput.addEventListener("input", billInputFun);
@@ -29,16 +30,25 @@ function billInputFun(){
 
 function peopleInputFun(){
     peoplevalue = parseFloat(peopleInput.value);
+    if (peoplevalue <= 0 || isNaN(peoplevalue)) {
+        document.querySelector(".error").style.display = "block";
+        peopleInput.style.border = "2px solid red"; // Marcar el input con error
+    } else {
+        document.querySelector(".error").style.display = "none";
+        peopleInput.style.border = "none"; // Restaurar el borde
+        calculateTip();
+    }
     calculateTip()
 }
 
 function tipInputFun(){
     tipValue = parseFloat(tipCustom.value /100);
-
-    tips.forEach(function (val) {
-        val.classList.remove("active-tip");
-    });
-    calculateTip();
+    if (!isNaN(tipValue) && tipValue > 0) {
+        tips.forEach(function (val) {
+            val.classList.remove("active-tip"); // Desactivar botones de propina
+        });
+        calculateTip();
+    }
 }
 
 function handleClick(event){
@@ -55,7 +65,7 @@ function handleClick(event){
 function calculateTip(){
     if (peoplevalue >= 1){
         let tipAmount = (billvalue * tipValue) / peoplevalue;
-        let total = (billvalue + tipAmount) / peoplevalue;
+        let total = (billvalue * (1 + tipValue)) / peoplevalue;
         tipPerPerson.innerHTML = "$" + tipAmount.toFixed(2);
         totalPerPerson.innerHTML = "$" + total.toFixed(2);
     }
