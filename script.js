@@ -4,7 +4,36 @@ const tipPerPerson = document.getElementById("tip-amount");
 const totalPerPerson = document.getElementById("total-amount");
 const tipCustom = document.querySelector(".tip-custom");
 const tips = document.querySelectorAll(".tips");
-const resetBtn = document.getElementById("resetBtn");
+const resetBtn = document.querySelector(".reset");
+
+function resetFun() {
+    // Restablecer los valores de entrada
+    document.getElementById("bill-input").value = ""; 
+    document.getElementById("people-input").value = "";
+    document.getElementById("tip-custom").value = "";
+
+    // Restablecer estilos de error
+    let errorText = document.querySelector(".error");
+    if (errorText) errorText.style.display = "none";
+    document.getElementById("peopleInput").style.border = "none";
+
+    // Quitar selección de los botones de propina
+    let tips = document.querySelectorAll(".tip-btn");
+    tips.forEach(btn => btn.classList.remove("active-tip"));
+
+    // Restablecer valores en pantalla
+    document.getElementById("tipAmount").innerText = "$0.00";
+    document.getElementById("totalAmount").innerText = "$0.00";
+
+    // Resetear variables
+    billValue = 0;
+    peopleValue = 0;
+    tipValue = 0;
+}
+
+// Escuchar el evento de click en el botón Reset
+resetBtn.addEventListener("click", resetFun);
+
 
 
 billInput.addEventListener("input", billInputFun);
@@ -38,7 +67,6 @@ function peopleInputFun(){
         peopleInput.style.border = "none"; // Restaurar el borde
         calculateTip();
     }
-    calculateTip()
 }
 
 function tipInputFun(){
@@ -56,7 +84,7 @@ function handleClick(event){
         val.classList.remove("active-tip");
         if (event.target.innerHTML === val.innerHTML){
             val.classList.add("active-tip");
-            tipValue = parseFloat(val.innerHTML)/100
+            tipValue = parseFloat(val.innerHTML.replace('%', ''))/100
         }
     });
     console.log(tipValue);

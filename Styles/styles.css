@@ -111,7 +111,7 @@ input{
     border-radius: 5px;
 }
 
-#tip-custom input{
+#tip-custom{
     box-sizing: border-box;
     width: 135px;
     height: 54px;
