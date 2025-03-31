@@ -26,7 +26,7 @@ body{
 
 label{
     color: hsl(186, 14%, 43%);
-    font-family: 700;
+    font-weight: 700;
     margin-bottom: 0.3rem;
 }
 
@@ -164,6 +164,7 @@ input{
         row-gap: 1.2rem;
         column-gap: 17px;
         margin-bottom: 3.2rem;
+        display: grid;
     }
 
     .tips{
