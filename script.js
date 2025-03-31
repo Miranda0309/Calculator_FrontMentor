@@ -24,3 +24,37 @@ function billInputFun(){
     billvalue = parseFloat(billInput.value);
    calculateTip()
 }
+
+function peopleInputFun(){
+    peoplevalue = parseFloat(peopleInput.value);
+    calculateTip()
+}
+
+function tipInputFun(){
+    tipValue = parseFloat(tipCustom.value /100);
+
+    tips.forEach(function (val) {
+        val.classList.remove("active-tip");
+    });
+    calculateTip();
+}
+
+function handleClick(event){
+    tips.forEach(function (val) {
+        val.classlist.remove("active-tip");
+        if (event.target.innerHTML === val.innerHTML){
+            val.classlist.add("active-tip");
+            tipValue = parseFloat(val.innerHTML)/100
+        }
+    });
+    console.log(tipValue);
+}
+
+function calculateTip(){
+    if (peoplevalue >= 1){
+        let tipAmount = (billvalue * tipValue) / peoplevalue;
+        let total = (billvalue + tipAmount) / peoplevalue;
+        tipPerPerson.innerHTML = "$" + tipAmount.toFixed(2);
+        totalPerPerson.innerHTML = "$" + total.toFixed(2);
+    }
+}    
