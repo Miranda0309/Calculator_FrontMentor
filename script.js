@@ -15,3 +15,12 @@ billInput.value = "0.0";
 peopleInput.value = "1";
 tipPerPerson.innerHTML = "$" + (0.0).toFixed(2);
 totalPerPerson.innerHTML = "$" + (0.0).toFixed(2);
+
+let billvalue = 0.0;
+let peoplevalue = 1;
+let tipValue = 0.15;
+
+function billInputFun(){
+    billvalue = parseFloat(billInput.value);
+   calculateTip()
+}
