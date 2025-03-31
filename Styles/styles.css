@@ -179,4 +179,14 @@ input{
         padding: 48px 38px;
     }
 
+    .amount{
+        font-size: 55px;
+    }
+
+    .reset{
+        padding: 13px 0 13px 0;
+        margin-top: auto;
+    }
+}
+
 
